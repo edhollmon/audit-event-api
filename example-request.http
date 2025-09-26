@@ -1,5 +1,5 @@
 // Check service health
-GET http://localhost:3001/health
+GET http://localhost:65332/health
 
 ###
-GET http://localhost:3001/audit-event
+GET http://localhost:65332/audit-event

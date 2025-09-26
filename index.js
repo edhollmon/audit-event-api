@@ -8,17 +8,20 @@ const port = 3001
 const cacheKeyPrefix = 'events:tenant:'
 
 // Setup Redis
-const redisClient = createClient();
+const redisClient = createClient({
+  url: process.env.REDIS_URL || 'redis://redis:6379'
+});
 redisClient.on('error', err => console.log('Redis Client Error', err));
 await redisClient.connect();
 
 // Elasticsearch setup
-const node = 'http://localhost:9200';
+const esAuth = process.env.ELASTICSEARCH_API_KEY
+  ? { apiKey: process.env.ELASTICSEARCH_API_KEY }
+  : undefined;
+const node = process.env.ELASTICSEARCH_NODE || 'http://elasticsearch:9200';
 const esClient = new Client({
   node,
-  auth: {
-    apiKey: process.env.ELASTICSEARCH_API_KEY,
-  }
+  auth: esAuth
 })
 const index = 'audit-events'
 // await esClient.indices.create({ index })

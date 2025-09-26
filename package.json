@@ -10,7 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@elastic/elasticsearch": "^9.1.1",
+    "@elastic/elasticsearch": "^8.19.1",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "redis": "^5.8.2"
